@@ -1,0 +1,20 @@
+#!/sbin/runscript
+
+DAEMON=/usr/bin/orbited_daemonize
+
+depend() {
+	need net
+}
+
+start() {
+	ebegin "Starting orbited"
+	start-stop-daemon --start --quiet --pidfile /var/run/orbited.pid \
+		--exec ${DAEMON} -- --pidfile /var/run/orbited.pid
+	eend $? "Failed to start orbited"
+}
+
+stop() {
+	ebegin "Stopping orbited"
+	start-stop-daemon --stop --quiet --pidfile /var/run/orbited.pid 
+	eend $? "Failed to stop orbited"
+}

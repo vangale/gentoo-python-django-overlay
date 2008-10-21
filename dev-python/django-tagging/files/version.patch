@@ -1,0 +1,11 @@
+--- trunk.orig/setup.py	2008-08-26 02:09:53.000000000 -0600
++++ trunk/setup.py	2008-08-26 02:11:52.000000000 -0600
+@@ -46,7 +46,7 @@
+         data_files.append([dirpath, [os.path.join(dirpath, f) for f in filenames]])
+ 
+ # Dynamically calculate the version based on tagging.VERSION
+-version_tuple = __import__('tagging').VERSION
++version_tuple = (0, 3, 'pre')
+ if version_tuple[2] is not None:
+     version = "%d.%d_%s" % version_tuple
+ else:
