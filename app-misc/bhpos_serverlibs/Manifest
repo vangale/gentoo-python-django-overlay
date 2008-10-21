@@ -1,8 +1,0 @@
-DIST bhpos_serverlibs-2.0.0.tar.gz 375301 RMD160 6be1f5b40fba93f814b7d450c7f360814c3b515a SHA1 69fec9691c5217821e7a801f5ae200d87da472b1 SHA256 c06df464b7fd045b4849dfaa066351eeee65f98746af6b06c65b3006427471ba
-EBUILD bhpos_serverlibs-2.0.0.ebuild 691 RMD160 c9beb28888ea9101ba0cea975ef499546220fb6f SHA1 d095f7d071bfce9ecc19f9554bce2eb9a5a72063 SHA256 d4942e8c8fefc0991d1dfcc4b2782a46a07b381290fe2d041721a9bb98c0893d
-MD5 55bbc2e48fe413b164ba55784a2d7ef7 bhpos_serverlibs-2.0.0.ebuild 691
-RMD160 c9beb28888ea9101ba0cea975ef499546220fb6f bhpos_serverlibs-2.0.0.ebuild 691
-SHA256 d4942e8c8fefc0991d1dfcc4b2782a46a07b381290fe2d041721a9bb98c0893d bhpos_serverlibs-2.0.0.ebuild 691
-MD5 aec72dafd99bcdec44bde6eab13d1dae files/digest-bhpos_serverlibs-2.0.0 268
-RMD160 3b897a87c162a60776b6c8a59fe0aeb6a8f885a0 files/digest-bhpos_serverlibs-2.0.0 268
-SHA256 e943b62a29ad64029ea96b9fb288c50f4af96218aebe141cf6b3e875dbb0b0fe files/digest-bhpos_serverlibs-2.0.0 268
