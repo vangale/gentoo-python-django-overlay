@@ -21,3 +21,16 @@ Instructions
    the bottom of /etc/make.conf::
 
     source /usr/portage/local/layman/make.conf
+
+Disclaimer
+==========
+
+Since I'm not a Gentoo dev, I don't pay close attention to any changes in
+the way ebuilds are written, especially Python ebuilds.  So please use these
+with that understanding. Some of these projects that I include are not well
+maintained and are sketchy code, which means I might not even be using the
+project anymore and won't update the ebuild.
+
+Finally, I probably won't do any more Django ebuilds as I now prefer to
+do svn checkouts in the root directory of every project I'm working on. In
+other words like the ./external_apps/svn.externals in pinax/django-hotclub.
