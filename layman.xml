@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<layman>
+  <overlay
+     type = "git"
+     src  = "git://github.com/vangale/gentoo-python-django-overlay.git"
+     contact = "vangale@agile.st"
+     status  = "unofficial"
+     name = "python-django">
+
+    <link>
+      http://github.com/vangale/gentoo-python-django-overlay/tree/master
+    </link>
+
+    <description>
+      Gentoo ebuilds for python and django packages that I use
+    </description>
+  </overlay>
+</layman>
