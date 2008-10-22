@@ -1,0 +1,23 @@
+
+Instructions
+============
+
+1. Install layman if you haven't already::
+
+    # emerge layman
+
+2. Add the following line to the list of overlays in
+   /etc/layman/layman.conf (i.e. underneath the line that
+   starts with "overlays : http...")::
+
+    http://github.com/vangale/gentoo-python-django-overlay/tree/master%2Flayman.xml?raw=true
+
+3. Run layman sync and add the overlay::
+
+    # layman -S
+    # layman -a python-django
+
+4. If this was your first layman overlay add the following line to
+   the bottom of /etc/make.conf::
+
+    source /usr/portage/local/layman/make.conf
