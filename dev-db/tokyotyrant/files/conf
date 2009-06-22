@@ -1,0 +1,12 @@
+
+port="1978"
+dbname="casket.tch#bnum=1000000"
+maxcon="65535"
+
+#logfile="$basedir/log"
+#ulogdir="$basedir/ulog"
+#ulimsiz="256m"
+#sid=1
+#mhost="remotehost1"
+#mport="1978"
+#rtsfile="$basedir/rts"

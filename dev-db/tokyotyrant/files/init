@@ -1,0 +1,115 @@
+#!/sbin/runscript
+
+# configuration variables
+prog="tokyotyrant"
+cmd="/usr/bin/ttserver"
+basedir="/var/lib/tokyotyrant"
+rundir="/var/run/tokyotyrant"
+pidfile="$rundir/tokyotyrant.pid"
+retval=0
+db=${basedir}/${dbname}
+
+# setting environment variables
+LANG=C
+LC_ALL=C
+PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin"
+export LANG LC_ALL PATH
+
+depend() {
+	need net
+}
+
+start(){
+  ebegin 'Starting tokyo tyrant'
+  if [ -z "$basedir" ] || [ -z "$port" ] || [ -z "$pidfile" ] || [ -z "$db" ] ; then
+    printf 'Invalid configuration\n'
+    retval=1
+  elif ! [ -d "$basedir" ] ; then
+    printf 'No such directory: %s\n' "$basedir"
+    retval=1
+  elif [ -f "$pidfile" ] ; then
+    pid=`cat "$pidfile"`
+    printf 'Existing process: %d\n' "$pid"
+    retval=1
+  else
+    if [ -n "$maxcon" ] ; then
+      ulimit -n "$maxcon"
+    fi
+    cmd="$cmd -port $port -dmn -pid $pidfile"
+    if [ -n "$logfile" ] ; then
+      cmd="$cmd -log $logfile"
+    fi
+    if [ -n "$ulogdir" ] ; then
+      mkdir -p "$ulogdir"
+      cmd="$cmd -ulog $ulogdir"
+    fi
+    if [ -n "$ulimsiz" ] ; then
+      cmd="$cmd -ulim $ulimsiz"
+    fi
+    if [ -n "$sid" ] ; then
+      cmd="$cmd -sid $sid"
+    fi
+    if [ -n "$mhost" ] ; then
+      cmd="$cmd -mhost $mhost"
+    fi
+    if [ -n "$mport" ] ; then
+      cmd="$cmd -mport $mport"
+    fi
+    if [ -n "$rtsfile" ] ; then
+      cmd="$cmd -rts $rtsfile"
+    fi
+    printf "Executing: %s\n" "$cmd"
+    cmd="$cmd $db"
+    $cmd
+    if [ "$?" -eq 0 ] ; then
+      printf 'Done\n'
+    else
+      printf 'The server could not started\n'
+      retval=1
+    fi
+  fi
+}
+
+
+# stop the server
+stop(){
+	ebegin 'Stopping tokyo tyrant'
+  if [ -f "$pidfile" ] ; then
+    pid=`cat "$pidfile"`
+    printf "Sending the terminal signal to the process: %s\n" "$pid"
+    kill -TERM "$pid"
+    c=0
+    while true ; do
+      sleep 0.1
+      if [ -f "$pidfile" ] ; then
+        c=`expr $c + 1`
+        if [ "$c" -ge 100 ] ; then
+          printf 'Hanging process: %d\n' "$pid"
+          retval=1
+          break
+        fi
+      else
+        printf 'Done\n'
+        break
+      fi
+    done
+  else
+    printf 'No process found\n'
+    retval=1
+  fi
+}
+
+
+# send HUP to the server for log rotation
+hup(){
+  printf 'Sending HUP signal to the server of Tokyo Tyrant\n'
+  if [ -f "$pidfile" ] ; then
+    pid=`cat "$pidfile"`
+    printf "Sending the hangup signal to the process: %s\n" "$pid"
+    kill -HUP "$pid"
+    printf 'Done\n'
+  else
+    printf 'No process found\n'
+    retval=1
+  fi
+}
