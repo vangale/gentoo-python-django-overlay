@@ -28,7 +28,7 @@ src_install() {
 
 pkg_postinst() {
 	python_version
-	python_mod_optimize ${ROOT}usr/$(get_libdir)/python${PYVER}/site-packages/django_extensions
+	python_mod_optimize ${ROOT}usr/$(get_libdir)/python${PYVER}/site-packages/pygraphviz
 }
 
 pkg_postrm() {
