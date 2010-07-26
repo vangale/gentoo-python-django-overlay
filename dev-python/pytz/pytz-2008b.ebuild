@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/pytz-2008a.ebuild,v 1.1 2008/04/03 21:53:33 lordvan Exp $
 
-NEED_PYTHON=2.3
+PYTHON_DEPEND="2"
 
 inherit distutils
 
